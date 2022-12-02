@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/IDANCEADMIN/app/src/main/res/layout/activity_main.xml" value="0.2713541666666667" />
         <entry key="..\:/IDANCEADMIN/app/src/main/res/layout/item_vip_user.xml" value="0.2713541666666667" />
         <entry key="..\:/IDANCEADMIN/app/src/main/res/layout/pick_time.xml" value="0.2713541666666667" />
+        <entry key="app/src/main/res/drawable/shapebgsearch.xml" value="0.1585" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/layout/dialog_confirm.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/layout/dialog_set_vip_user.xml" value="0.24974358974358973" />
+        <entry key="app/src/main/res/layout/dialog_vip_user.xml" value="0.2526041666666667" />
+        <entry key="app/src/main/res/layout/item_vip_user.xml" value="0.24974358974358973" />
       </map>
     </option>
   </component>
