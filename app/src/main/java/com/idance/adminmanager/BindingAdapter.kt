@@ -9,57 +9,39 @@ import java.nio.charset.Charset
 import java.util.*
 
 @SuppressLint("SetTextI18n")
-@BindingAdapter(value = ["exp", "amount"], requireAll = true)
-fun setExp(text: TextView, exp: String?, amount: String) {
+@BindingAdapter(value = ["exp", "current_plan"], requireAll = true)
+fun setExp(text: TextView, exp: Long?, currentPlan: String) {
     if(exp!=null){
-        val timeStamp = exp.substring(2).toLong()
         val current = System.currentTimeMillis()
-        val timeUse = current - timeStamp
+        val timeUse = current - exp
         var expTime: Long = 0
-        if(amount=="45000"||amount=="50000"){
+        if(currentPlan=="vip1"){
             expTime = 2678400000
         }
-        if(amount=="99000"||amount=="120000"){
+        if(currentPlan=="vip2"){
             expTime = 8035200000
         }
-        if(amount=="150000"||amount=="149000"){
+        if(currentPlan=="vip3"){
             expTime = 16070400000
         }
         val conLai = expTime - timeUse
-        val days = conLai / 1000 / 86400
-        val hours = (conLai % 86400000) / 3600
-        val minutes = ((conLai % 86400000) % 3600) / 60
+        val days = (conLai / 1000 / 86400).toInt()
+        val hours = ((conLai % 86400000) / 3600/1000).toInt()
+        val minutes = (((conLai % 86400000) % 3600) / 60).toInt()
         text.text = "Thời hạn còn: $days ngày $hours giờ $minutes phút."
     }else{
         text.text = "Không xác định"
     }
 }
 
-@BindingAdapter("user_id")
-fun setUserId(textView: TextView, extraData: String){
-    val data: ByteArray = decode(extraData, DEFAULT)
-    val text = data.toString( "UTF-8" as Charset)
-    textView.text = text
-}
-
 @SuppressLint("SetTextI18n")
 @BindingAdapter("registerDate")
-fun setRegisterDate(text: TextView, exp: String?) {
+fun setRegisterDate(text: TextView, exp: Long?) {
    if(exp!=null){
-       val timeStamp = exp.substring(2).toLong()
-       text.text = "Thanh toán: " + Date(timeStamp)
+       text.text = "Ngày tham gia: " + Date(exp)
    }else{
        text.text = "Không xác định"
    }
 }
 
-@BindingAdapter("sotien")
-fun setSoTien(text: TextView, amount: String?) {
-    if(amount!=null){
-
-        text.text = amount.plus(" vnđ")
-    }else{
-        text.text = "Không xác định"
-    }
-}
 

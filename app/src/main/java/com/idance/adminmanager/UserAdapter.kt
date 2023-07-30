@@ -1,27 +1,34 @@
 package com.idance.adminmanager
 
+import android.app.Activity
 import android.app.Dialog
-import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.JsonObject
-import com.idance.adminmanager.databinding.DialogConfirmBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.idance.adminmanager.databinding.DialogChoosePlanBinding
 import com.idance.adminmanager.databinding.ItemVipUserBinding
-import com.idance.adminmanager.models.DataItem
 import com.idance.adminmanager.models.VipUser
-import com.idance.adminmanager.viewmodel.UserViewModel
-import java.util.*
-import kotlin.collections.ArrayList
 
-class UserAdapter(
-    val users: ArrayList<DataItem> = arrayListOf(),
-    val userViewModel: UserViewModel,
-    val context: Context,
-    val layoutInflate: LayoutInflater
-) :
-    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserComparator : DiffUtil.ItemCallback<VipUser>() {
+    override fun areItemsTheSame(oldItem: VipUser, newItem: VipUser): Boolean =
+        oldItem.uid == newItem.uid
+
+    override fun areContentsTheSame(oldItem: VipUser, newItem: VipUser): Boolean =
+        oldItem == newItem
+
+}
+
+class UserAdapter(val activity: Activity) :
+    ListAdapter<VipUser, UserAdapter.UserViewHolder>(UserComparator()) {
 
     class UserViewHolder(val binding: ItemVipUserBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -37,47 +44,41 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.binding.vipUser = users[position]
-
+        holder.binding.vipUser = getItem(position)
         holder.binding.btnRenewal.setOnClickListener {
-            val dialogConfirm = Dialog(context, R.style.Theme_IDANCEADMIN)
-            val dialogBinding = DialogConfirmBinding.inflate(layoutInflate)
-            dialogConfirm.setCanceledOnTouchOutside(false)
-            dialogConfirm.setContentView(dialogBinding.root)
-            dialogConfirm.show()
-            dialogBinding.btnConfirm.setOnClickListener {
-                val orderId = "ID" + System.currentTimeMillis()
-                val amount = users[position].amount.toString()
-
-                val json = JsonObject()
-                json.addProperty("user_id", users[position].userId)
-                val extraData =
-                    Base64.getEncoder().encodeToString(json.toString().encodeToByteArray()).toString()
-                val signature = "Chuyển khoản null signature"
-                val message = "Thanh toán bằng chuyển khoản"
-                val orderInfo = users[position].orderInfo
-                val vipUser = VipUser(
-                    orderId = orderId,
-                    requestId = orderId,
-                    message = message,
-                    extraData = extraData,
-                    signature = signature,
-                    orderInfo = orderInfo,
-                    amount = amount
-                )
-                userViewModel.setNewVipUser(vipUser)
+            val oopsBinding = DialogChoosePlanBinding.inflate(activity.layoutInflater)
+            val dialogNotSupport = Dialog(activity, R.style.MyDialog)
+            dialogNotSupport.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogNotSupport.setContentView(oopsBinding.root)
+            dialogNotSupport.setCanceledOnTouchOutside(true)
+            dialogNotSupport.show()
+            oopsBinding.btnOk.setOnClickListener {
+                val newPlan = if (oopsBinding.planFree.isChecked) {
+                    "free"
+                } else if (oopsBinding.planVip1.isChecked) {
+                    "vip1"
+                } else if (oopsBinding.planVip2.isChecked) {
+                    "vip2"
+                } else if (oopsBinding.planVip3.isChecked) {
+                    "vip3"
+                } else {
+                    "free"
+                }
+                val map = mutableMapOf<String, Any?>()
+                map["currentPlan"] = newPlan
+                map["lastPlanDate"] = System.currentTimeMillis()
+                Firebase.firestore.collection("users")
+                    .document(getItem(position).uid!!).update(map).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(activity, "Cập nhật thành công.", Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(activity, "Lỗi trong quá trình cập nhật.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                dialogNotSupport.dismiss()
             }
-            dialogBinding.btnCancel.setOnClickListener {
-                dialogConfirm.dismiss()
-            }
-
         }
-
         holder.binding.executePendingBindings()
 
-    }
-
-    override fun getItemCount(): Int {
-        return users.size
     }
 }

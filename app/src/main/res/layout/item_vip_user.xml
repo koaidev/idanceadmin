@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="vipUser"
-            type="com.idance.adminmanager.models.DataItem" />
+            type="com.idance.adminmanager.models.VipUser" />
 
     </data>
 
@@ -36,13 +35,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/uid"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_height="wrap_content"
+                    android:text="@{vipUser.uid}"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_renewal"
+                    app:layout_constraintStart_toStartOf="@+id/tvnotificationsName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvnotificationsName" />
+
+                <TextView
                     android:id="@+id/tvnotificationsName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:maxLines="2"
                     android:singleLine="true"
-                    android:text="@{vipUser.orderInfo, default = UserName}"
+                    android:text="@{vipUser.name??String.valueOf(0), default = UserName}"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/PoppinsSemiBold"
                     android:textColor="@color/black"
@@ -53,84 +63,83 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/stt"
-                    sotien="@{vipUser.amount , default=1}"
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/g_i_c_c_hi_n_t_i"
+                    app:layout_constraintStart_toStartOf="@+id/tvnotificationsName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvdeliverydate" />
+
+                <TextView
+                    android:id="@+id/stt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@{vipUser.currentPlan , default=1}"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/PoppinsRegular"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_8sdp"
-                    app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toStartOf="@id/tvnotificationsName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvnotificationsName" />
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="@+id/textView2" />
 
                 <TextView
                     android:id="@+id/tvdeliverydate"
-                    registerDate="@{vipUser.orderId, default=august_03_2021}"
+                    registerDate="@{vipUser.dateCreate, default=august_03_2021}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="viewStart"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:textAppearance="@style/PoppinsRegular"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/_8sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tvDelivery"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDelivery"
-                    app:layout_constraintVertical_bias="0.2" />
-
-                <TextView
-                    android:id="@+id/tvDeliveryDetails"
-                    android:layout_width="@dimen/_220sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:maxEms="28"
-                    android:text="@{vipUser.userId, default=knsifjqiskdnfiknfs}"
-                    android:textAlignment="viewStart"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/_11sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="@+id/tvnotificationsName"
-                    app:layout_constraintTop_toBottomOf="@id/stt" />
+                    app:layout_constraintTop_toBottomOf="@+id/uid" />
 
                 <TextView
                     android:id="@+id/tvDelivery"
-                    amount="@{vipUser.amount}"
-                    exp="@{vipUser.orderId, default=knsifjqiskdnfiknfs}"
-                    android:layout_width="@dimen/_220sdp"
+                    current_plan="@{vipUser.currentPlan}"
+                    exp="@{vipUser.lastPlanDate, default=knsifjqiskdnfiknfs}"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
                     android:maxEms="15"
                     android:textAlignment="viewStart"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="@dimen/_11sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="@+id/tvnotificationsName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDeliveryDetails" />
+                    app:layout_constraintTop_toBottomOf="@+id/stt" />
 
                 <Button
                     android:id="@+id/btn_renewal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/background_light"
+                    android:rotation="90"
                     android:text="Gia hạn"
                     android:textColor="#03A9F4"
                     android:textSize="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tvdeliverydate"
-                    app:layout_constraintTop_toBottomOf="@+id/tvdeliverydate" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{vipUser.id}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@{vipUser.phone!=null?vipUser.phone:vipUser.email}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvnotificationsName"
+                    app:layout_constraintStart_toEndOf="@+id/tvnotificationsName"
+                    app:layout_constraintTop_toTopOf="@+id/tvnotificationsName" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

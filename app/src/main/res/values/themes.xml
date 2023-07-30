@@ -26,7 +26,18 @@
         <item name="fontFamily">@font/poppins_regular</item>
     </style>
 
+    <style name="MyDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="cornerRadius">@dimen/_16sdp</item>
+        <item name="android:radius">@dimen/_16sdp</item>
+        <item name="android:layout_margin">@dimen/_16sdp</item>
+    </style>
+
     <style name="PoppinsSemiBold">
         <item name="fontFamily">@font/poppins_semibold</item>
     </style>
+
+    <style name="ShapeAppearanceOverlay.App.rounded" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>

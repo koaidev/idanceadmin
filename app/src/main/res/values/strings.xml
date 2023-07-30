@@ -2,5 +2,7 @@
     <string name="app_name">IDANCE ADMIN</string>
     <string name="th_m">Thêm</string>
     <string name="vnd"> vnđ</string>
-    <string name="confirm_description">Chọn <b>Xác nhận</b> để gia hạn với gói cước hiện tại hoặc <b>Thêm mới</b> để gia hạn với gói cước khác.</string>
+    <string name="confirm_description">Chọn <b>Xác nhận</b> để gia hạn khóa học mới.</string>
+    <string name="ng_y_tham_gia">Ngày tham gia:</string>
+    <string name="g_i_c_c_hi_n_t_i">Gói cước hiện tại:</string>
 </resources>

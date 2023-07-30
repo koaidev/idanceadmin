@@ -6,17 +6,23 @@ import androidx.annotation.Keep
 @Keep
 data class VipUser(
     @Keep
-    val orderId: String,
+    val currentPlan: String?,
     @Keep
-    val requestId: String,
+    val dateCreate: Long?,
     @Keep
-    val amount: String,
+    val email: String?,
     @Keep
-    val extraData: String,
+    val fcmToken: String?,
     @Keep
-    val message: String?,
+    val image: String?,
     @Keep
-    val orderInfo: String?,
+    val lastPlanDate: Long?,
     @Keep
-    val signature: String?,
-)
+    val name: String?,
+    @Keep
+    val phone: String?,
+    @Keep
+    val uid: String?
+) {
+    constructor() : this(null, null, null, null, null, null, null, null, null)
+}

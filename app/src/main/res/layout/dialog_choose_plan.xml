@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_round_16dp">
+
+    <TextView
+        android:id="@+id/txt_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_22sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:gravity="center"
+        android:text="Chọn gói học mới"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        app:layout_constraintStart_toStartOf="@+id/txt_info"
+        app:layout_constraintTop_toBottomOf="@+id/txt_info">
+
+        <RadioButton
+            android:id="@+id/plan_free"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/button_radio_export"
+            android:buttonTint="@color/color_radio"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:text="Gói FREE"
+            android:textColor="@color/color_radio"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioButton
+            android:id="@+id/plan_vip1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/button_radio_export"
+            android:buttonTint="@color/color_radio"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:text="Gói VIP1 - 45K"
+            android:textColor="@color/color_radio"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioButton
+            android:id="@+id/plan_vip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/button_radio_export"
+            android:buttonTint="@color/color_radio"
+            android:checked="true"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:text="Gói VIP2 - 99K"
+            android:textColor="@color/color_radio"
+            android:textSize="@dimen/_12ssp" />
+
+        <RadioButton
+            android:id="@+id/plan_vip3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/button_radio_export"
+            android:buttonTint="@color/color_radio"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:text="Gói VIP3 - 149K"
+            android:textColor="@color/color_radio"
+            android:textSize="@dimen/_12ssp" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_marginBottom="@dimen/_24sdp"
+        android:paddingStart="@dimen/_50sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_50sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:text="Xác nhận"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.rounded" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
