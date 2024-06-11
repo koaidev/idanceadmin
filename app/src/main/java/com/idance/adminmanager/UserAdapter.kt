@@ -2,6 +2,7 @@ package com.idance.adminmanager
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -11,7 +12,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.idance.adminmanager.databinding.DialogChoosePlanBinding
@@ -69,14 +69,28 @@ class UserAdapter(val activity: Activity) :
                 map["lastPlanDate"] = System.currentTimeMillis()
                 Firebase.firestore.collection("users")
                     .document(getItem(position).uid!!).update(map).addOnCompleteListener {
-                        if (it.isSuccessful){
-                            Toast.makeText(activity, "Cập nhật thành công.", Toast.LENGTH_SHORT).show()
-                        }else{
-                            Toast.makeText(activity, "Lỗi trong quá trình cập nhật.", Toast.LENGTH_SHORT).show()
+                        if (it.isSuccessful) {
+                            Toast.makeText(activity, "Cập nhật thành công.", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            Toast.makeText(
+                                activity,
+                                "Lỗi trong quá trình cập nhật.",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 dialogNotSupport.dismiss()
             }
+        }
+        holder.binding.root.setOnClickListener {
+            holder.itemView.context.startActivity(
+                Intent(
+                    holder.itemView.context,
+                    DetailActivity::class.java
+                ).apply {
+                    putExtra("userId", getItem(position).uid)
+                })
         }
         holder.binding.executePendingBindings()
 

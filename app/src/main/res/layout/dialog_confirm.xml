@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -47,9 +46,9 @@
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:gravity="center"
                 android:text="@string/confirm_description"
                 app:layout_constraintEnd_toEndOf="@+id/materialDivider"
                 app:layout_constraintStart_toStartOf="@+id/materialDivider"
@@ -61,8 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="Xác nhận"
                 android:backgroundTint="#03A9F4"
+                android:text="Xác nhận"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/view"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -80,8 +79,8 @@
                 android:id="@+id/btn_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Huỷ"
                 android:backgroundTint="#949798"
+                android:text="Huỷ"
                 app:layout_constraintEnd_toEndOf="@+id/textView4"
                 app:layout_constraintStart_toEndOf="@+id/view"
                 app:layout_constraintTop_toTopOf="@+id/btn_confirm" />

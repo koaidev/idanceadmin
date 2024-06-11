@@ -5,6 +5,8 @@ import android.util.Base64.DEFAULT
 import android.util.Base64.decode
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.google.android.material.imageview.ShapeableImageView
 import java.nio.charset.Charset
 import java.util.*
 
@@ -42,6 +44,13 @@ fun setRegisterDate(text: TextView, exp: Long?) {
    }else{
        text.text = "Không xác định"
    }
+}
+
+@BindingAdapter("thumb")
+fun setThumb(shapeableImageView: ShapeableImageView, url: String?){
+    if (url!=null){
+        Glide.with(shapeableImageView).load(url).into(shapeableImageView)
+    }
 }
 
 

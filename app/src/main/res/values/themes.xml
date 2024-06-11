@@ -31,6 +31,12 @@
         <item name="android:radius">@dimen/_16sdp</item>
         <item name="android:layout_margin">@dimen/_16sdp</item>
     </style>
+    <style name="RoundImage">
+        <item name="android:radius">6dp</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">6dp</item>
+    </style>
 
     <style name="PoppinsSemiBold">
         <item name="fontFamily">@font/poppins_semibold</item>
